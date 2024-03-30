@@ -32,13 +32,10 @@ private String userInput;
      * @return Returns a String that has correct grammer
      */
     public static String runPrompt(String s) {
-        //System.out.println("test 1");
         //create open ai api
         String url = "https://api.openai.com/v1/chat/completions"; //url to chapgpt api
         String model = "gpt-3.5-turbo"; 
-        //System.out.println("test 2");
         try {
-            //System.out.println("test 3");
             
             URI uri = new URI(url);
             URL obj = uri.toURL(); //create a url obj
@@ -46,31 +43,24 @@ private String userInput;
             connection.setRequestMethod("POST"); 
             connection.setRequestProperty("Authorization", "Bearer " + APIKEY);
             connection.setRequestProperty("Content-Type", "application/json");
-            //System.out.println("test 4");
 
             //request body
             String body = "{\"model\" : \"" + model + "\", \"messages\": [{\"role\": \"user\", \"content\": \"" + s + "\"}]}";
-            //System.out.println("test 4.1");
             connection.setDoOutput(true);
             System.out.println("test 4.11");
             OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-            //System.out.println("test 4.2");
             writer.write(body);
-            //System.out.println("test 4.3");
             writer.flush();
             writer.close();
-            //System.out.println("test 5");
 
             //get response
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String input; 
             StringBuffer response = new StringBuffer();
-            //System.out.println("test 6");
             while((input = in.readLine()) != null) {
                 response.append(input);
             }
             in.close();
-            //return (response.toString().split("\"content\":\"")[1].split("\"")[0]).substring(4);
             return response.toString();
 
         
