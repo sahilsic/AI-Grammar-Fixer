@@ -1,0 +1,5 @@
+*.log
+.vscode/
+APIKey.java
+json-20200518.jar
+AI Grammar App.jar
