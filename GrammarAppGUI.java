@@ -11,16 +11,16 @@ import java.awt.event.*;
 public class GrammarAppGUI extends JFrame implements ActionListener, FocusListener{
 
 private JFrame frame;
-private JTextField userInput;
-private JTextField output;
+private JTextField userInput; //where user puts input. 
+private JTextField output; //holds output 
 
-private JPanel buttonPanel; 
+private JPanel buttonPanel; //holds fix and clear button
 
 private JButton fixGrammarButton;
 private JButton clearButton; 
 private JButton copyButton;
 
-private GrammarApp grammarApp = new GrammarApp();
+private GrammarApp grammarApp = new GrammarApp(); //needs instance of the api source code
 
 public static void main(String[] args) {
     new GrammarAppGUI();
@@ -60,7 +60,7 @@ public GrammarAppGUI() {
         clearButton.addActionListener(this);
         buttonPanel.add(clearButton);
 
-        output = new JTextField("fixed grammar goes here");
+        output = new JTextField("Fixed grammar...");
         output.setBounds(12, 180, 450, 100);
         output.setEditable(false);
         frame.add(output); // Adding output to the center position
@@ -77,6 +77,8 @@ public GrammarAppGUI() {
 
 
 
+/** Handles all the JButton interactions
+ */
 @Override
 public void actionPerformed(ActionEvent e) {
     if(e.getSource()==fixGrammarButton) {
@@ -96,6 +98,9 @@ public void actionPerformed(ActionEvent e) {
     }
     }
 
+    /** Used for the textbox in order to have shadow text.
+     * 
+     */
 @Override
 public void focusGained(FocusEvent e ) {
     if(userInput.getText().equals("Enter text here...")) {
